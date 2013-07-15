@@ -1,0 +1,59 @@
+<?php
+
+// TODO: supprimer la documentation sur Drupla.org, pour la création d'un nouveau filtre
+// TODO: Création des 3 hooks nécessaires
+// hook_filter_info
+/*
+ * Implements filter prepare callback.
+ * Implements filter process callback
+ *  Implements filter tips callback
+ /**
+  * Implementation of hook_init().
+ */
+function whales_filter_info(){
+  $filters = array();
+
+  $filters['whales_filter'] = array(
+    'title'=> t('Whales'),
+    'description'=> t('Création d\'filtre pour supprimer les <em>e</em>'),
+    'prepare callback'=>'whales_prepare_callback',
+    'process callback'=>'whales_process_callback',
+    'tips callback'=>'whales_tips_callback',
+  );
+  return $filters;
+}
+function whales_prepare_callback($text, $filter, $format, $langcode, $cache, $cache_id) {
+  // Escape <code> and </code> tags.
+  dsm( func_get_args());
+  return $text;
+}
+function whales_process_callback($text, $filter){
+  dsm( func_get_args());
+  $pattern = '/e/';
+  $replacement = '---';
+  $text = preg_replace($pattern, $replacement, $text);
+  return $text .'Whales';
+  return $text;
+}
+function whales_tips_callback(){
+  return t('Bloc des tips pour le module Whales.');
+}
+function whales_supprimer_string($pattern='e',$text='hello'){
+  $pattern = '/'.$pattern.'/';
+  $replacement =''; 
+  $text = preg_replace($pattern, $replacement, $text);
+
+  return $text;
+}
+
+function whales_match(){
+  preg_match_all("/l/",
+        "hello world",
+            $out, PREG_PATTERN_ORDER);
+
+dsm($out);
+}
+
+function whales_init(){
+whales_match();
+}

@@ -1,0 +1,60 @@
+<?php
+/**
+ * @file
+ * Test case for testing the cron example module.
+ */
+
+/**
+ * @addtogroup cron_example
+ * @{
+ */
+
+/**
+ * cron_example test class
+ */
+class WhalesTestCase extends DrupalUnitTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Whales Units',
+      'description' => 'Test the functionality of the Cron Example.',
+      'group' => 'ZeeAgency',
+    );
+  }
+
+  
+
+  function setUp() {
+    drupal_load('module', 'whales');
+    parent::setUp();
+  }
+
+  /**
+   * Login user, create an example node, and test block functionality through
+   * the admin and user interfaces.
+   */
+  function testCronExampleBasic() {
+    $message = "hello word";
+    $result = TRUE;
+    $this->assertTrue($result, $message);
+
+  }
+  function testMethodFoundStringIsEnabled(){
+    $result = whales_supprimer_string();
+    $this->assertNotNull($result, 'Méthode whales_supprimer_string trouvée');
+  }
+
+   function testMethodFoundStringIsGood(){
+    $result = whales_supprimer_string('w','hello world');
+    $this->assertEqual('hello orld', $result, 'plus de w');
+  }
+
+  function testMethodFoundStringDernierCaractere(){
+    $result = whales_supprimer_string('l','hello world');
+    $this->assertEqual('hello word', $result, 'je ne veux plus le dernier l dans le mot \'hello world\' '.$result);
+  }
+}
+
+/**
+ * @} End of "addtogroup cron_example".
+ */
