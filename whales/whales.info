@@ -1,7 +1,4 @@
 name = Whales
-description = Fournit un nouveau filtre pour les contenus avec un double p
-
+description = Fournit un nouveau filtre pour les contenus avec une double balise <p>
 core = 7.x
-
-
-files[] =whales.test
+files[] = whales.test
